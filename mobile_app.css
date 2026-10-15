@@ -1,1 +1,657 @@
+ */
+:root {
+    /* Color Palette */
+    --bg-main: #0b0d12;
+    --bg-card: #121620;
+    --bg-card-hover: #171d2b;
+    --bg-input: #1a202c;
+    
+    /* Brand & Accent Colors */
+    --color-green-neon: #00ff66;
+    --color-green-glow: rgba(0, 255, 102, 0.25);
+    --color-green-dim: #053b1b;
+    
+    /* Priority Colors */
+    --priority-critical: #ff2a5f;
+    --priority-high: #ff9900;
+    --priority-medium: #00ff66;
+    
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #7f8c9d;
+    --text-muted: #4a5568;
+    
+    /* Borders & Outlines */
+    --border-color: #1a2332;
+    --border-bright: rgba(0, 255, 102, 0.3);
+    
+    /* Fonts & Spacing */
+    --font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+/* --------------------------------------------------------------------------
+   2. RESET & BASE STYLES
+   -------------------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    line-height: 1.5;
+    padding-bottom: 50px;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 0.75rem 0.5rem 0.75rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. HEADER & HOVER EFFECTS
+   -------------------------------------------------------------------------- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.5rem 1.0rem;
+    margin-bottom: 1.2rem;
+}
+
+.action-btn img {
+    width: 14px;
+    height: 14px;
+    filter: brightness(0) invert(0.85);
+    transition: var(--transition-smooth);
+}
+
+.icon-svg {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* מגן עליון + אפקט רחף */
+.logo-icon {
+    width: 26px;
+    height: 26px;
+    background-color: var(--color-green-neon);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0b0d12;
+    font-size: 0.75rem;
+    box-shadow: 0 0 8px var(--color-green-glow);
+    animation: pulse-glow 3s infinite ease-in-out;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.logo-icon:hover {
+    transform: scale(1.18);
+    box-shadow: 0 0 18px var(--color-green-neon), 0 0 30px rgba(0, 255, 102, 0.6);
+    background-color: #33ff85;
+}
+
+.system-title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--color-green-neon);
+    text-transform: uppercase;
+    text-shadow: 0 0 8px var(--color-green-glow);
+}
+
+/* תג סטטוס + אפקט רחף */
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--color-green-neon);
+    border-radius: 50px;
+    background-color: rgba(0, 255, 102, 0.05);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.status-badge:hover {
+    background-color: rgba(0, 255, 102, 0.15);
+    box-shadow: 0 0 12px var(--color-green-glow);
+}
+
+.status-dot {
+    width: 5px;
+    height: 5px;
+    background-color: var(--color-green-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--color-green-neon);
+    animation: blink 1.5s infinite alternate;
+}
+
+.status-text {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1.0px;
+    color: var(--color-green-neon);
+}
+
+/* --------------------------------------------------------------------------
+   4. CENTRAL OVERVIEW CARD & RADAR
+   -------------------------------------------------------------------------- */
+.overview-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 0.85rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 1.0rem;
+    position: relative;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.5rem;
+    transition: var(--transition-smooth);
+}
+
+.overview-card:hover {
+    border-color: rgba(0, 255, 102, 0.25);
+}
+
+.radar-container {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-green-neon);
+    background: radial-gradient(circle, rgba(0, 255, 102, 0.05) 0%, rgba(11, 13, 18, 0.9) 100%);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px var(--color-green-glow);
+}
+
+.radar-grid {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radar-circle {
+    position: absolute;
+    border: 1px solid rgba(0, 255, 102, 0.25);
+    border-radius: 50%;
+}
+
+.circle-1 { width: 33%; height: 33%; }
+.circle-2 { width: 66%; height: 66%; }
+.circle-3 { width: 100%; height: 100%; }
+
+.radar-axis {
+    position: absolute;
+    background-color: rgba(0, 255, 102, 0.25);
+}
+
+.axis-x { width: 100%; height: 1px; }
+.axis-y { width: 1px; height: 100%; }
+
+.radar-sweep {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, rgba(0, 255, 102, 0.4) 0deg, transparent 60deg, transparent 360deg);
+    animation: rotate-radar 4s linear infinite;
+    transform-origin: center center;
+    z-index: 2;
+}
+
+.radar-blip {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background-color: var(--color-green-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-green-neon);
+    z-index: 3;
+    animation: fade-blip 4s infinite ease-in-out;
+}
+
+.blip-1 { top: 30%; left: 65%; animation-delay: 0.5s; }
+.blip-2 { top: 70%; left: 40%; animation-delay: 1.8s; }
+.blip-3 { top: 45%; left: 25%; animation-delay: 2.9s; }
+
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 1rem;
+}
+
+.stat-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.stat-number.primary {
+    color: var(--color-green-neon);
+    text-shadow: 0 0 15px var(--color-green-glow);
+}
+
+.stat-number.accent {
+    color: var(--color-green-neon);
+    opacity: 0.9;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    margin-top: 0.4rem;
+}
+
+/* --------------------------------------------------------------------------
+   5. ACTIONS ROW & HOVER EFFECTS
+   -------------------------------------------------------------------------- */
+.actions-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.0rem;
+    width: 100%;
+    margin-top: 0.1rem;
+    margin-bottom: 1.2rem;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #141822;
+    border: 1px solid #222a3a;
+    color: #d0d7de;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.action-btn i {
+    color: #8b949e;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+}
+
+/* אפקט רחף לכפתורי פעולה */
+.action-btn:hover {
+    background-color: #1c2230;
+    border-color: rgba(0, 255, 102, 0.4);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.action-btn:hover i {
+    color: var(--color-green-neon);
+}
+
+.action-btn:hover img {
+    filter: brightness(0) invert(1) drop-shadow(0 0 4px var(--color-green-neon));
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   6. INTELLIGENCE CARDS GRID & HOVER EFFECTS
+   -------------------------------------------------------------------------- */
+.intelligence-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+}
+
+.intel-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.65rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.intel-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    transition: var(--transition-smooth);
+}
+
+.intel-card.priority-critical::before {
+    background-color: var(--priority-critical);
+    box-shadow: 2px 0 6px var(--priority-critical);
+}
+
+.intel-card.priority-high::before {
+    background-color: var(--priority-high);
+    box-shadow: 2px 0 6px var(--priority-high);
+}
+
+.intel-card.priority-medium::before {
+    background-color: var(--priority-medium);
+    box-shadow: 2px 0 6px var(--priority-medium);
+}
+
+/* אפקט רחף לכרטיסי מודיעין */
+.intel-card:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--border-bright);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.5px;
+}
+
+.badge-critical {
+    background-color: rgba(255, 42, 95, 0.15);
+    color: var(--priority-critical);
+    border: 1px solid var(--priority-critical);
+}
+
+.badge-high {
+    background-color: rgba(255, 153, 0, 0.15);
+    color: var(--priority-high);
+    border: 1px solid var(--priority-high);
+}
+
+.badge-medium {
+    background-color: rgba(0, 255, 102, 0.15);
+    color: var(--priority-medium);
+    border: 1px solid var(--priority-medium);
+}
+
+.card-status {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.progress-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 6px;
+    background-color: var(--bg-input);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--color-green-neon);
+    border-radius: 10px;
+    box-shadow: 0 0 8px var(--color-green-glow);
+    transition: width 1s ease-in-out;
+}
+
+.fill-85 { width: 85%; }
+.fill-42 { width: 42%; }
+.fill-18 { width: 18%; }
+.fill-89 { width: 89%; }
+
+.progress-percentage {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    min-width: 30px;
+    text-align: right;
+}
+
+/* --------------------------------------------------------------------------
+   7. THREAT DETECTED BANNER & HOVER EFFECT
+   -------------------------------------------------------------------------- */
+.alert-banner {
+    background-color: rgba(255, 42, 95, 0.08);
+    border: 1px solid var(--priority-critical);
+    border-radius: var(--radius-md);
+    padding: 0.45rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 0 12px rgba(255, 42, 95, 0.2);
+    animation: alert-pulse 2s infinite ease-in-out;
+    margin-bottom: 1.0rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+/* אפקט רחף לבאנר התראה */
+.alert-banner:hover {
+    background-color: rgba(255, 42, 95, 0.18);
+    box-shadow: 0 0 20px rgba(255, 42, 95, 0.45);
+    transform: scale(1.01);
+}
+
+.alert-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--priority-critical);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--priority-critical);
+}
+
+.alert-text {
+    color: var(--priority-critical);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   8. BOTTOM NAVIGATION & HOVER EFFECTS
+   -------------------------------------------------------------------------- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(11, 13, 18, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    padding: 0.35rem 0;
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.nav-item i {
+    font-size: 1.1rem;
+    transition: var(--transition-fast);
+}
+
+/* אפקט רחף ללשוניות בסרגל התחתון */
+.nav-item:hover {
+    color: var(--color-green-neon);
+    transform: translateY(-2px);
+}
+
+.nav-item.active {
+    color: var(--color-green-neon);
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.35rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 2px;
+    background-color: var(--color-green-neon);
+    box-shadow: 0 -2px 6px var(--color-green-neon);
+    border-radius: 3px 3px 0 0;
+}
+
+/* --------------------------------------------------------------------------
+   9. KEYFRAME ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes rotate-radar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fade-blip {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes blink {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 10px var(--color-green-glow); }
+    50% { box-shadow: 0 0 22px rgba(0, 255, 102, 0.6); }
+}
+
+@keyframes alert-pulse {
+    0%, 100% { border-color: rgba(255, 42, 95, 0.6); box-shadow: 0 0 15px rgba(255, 42, 95, 0.15); }
+    50% { border-color: rgba(255, 42, 95, 1); box-shadow: 0 0 25px rgba(255, 42, 95, 0.4); }
+}
+
+/* --------------------------------------------------------------------------
+   10. MOBILE RESPONSIVE DESIGN
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .overview-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 1.5rem 1rem;
+    }
+
+    .stats-container {
+        padding-left: 0;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .stat-number {
+        font-size: 2.8rem;
+    }
+
+    .actions-row {
+        flex-direction: column;
+    }
+
+    .intelligence-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intel-card {
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+    }
+
+    .bottom-nav {
+        padding: 0.5rem 0;
+    }
+}

@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="he" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGINT OPS - Intelligence Management System</title>
+    <link rel="stylesheet" href="mobile_app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="main-header">
+            <div class="header-left">
+                <div class="logo-icon">
+                    <img src="images/shield.svg" alt="Shield" class="logo-image">
+                </div>
+            </div>
+            <div class="header-center">
+                <h1 class="system-title">SIGINT OPS</h1>
+            </div>
+            <div class="header-right">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span class="status-text">SECURE • ONLINE</span>
+                </div>
+            </div>
+        </header>
 
+        <!-- MAIN DASHBOARD CONTENT -->
+        <main class="dashboard-main">
+            <!-- CENTRAL RADAR & STATS SECTION -->
+            <section class="overview-card">
+                <div class="radar-container">
+                    <div class="radar-sweep"></div>
+                    <div class="radar-grid">
+                        <div class="radar-circle circle-1"></div>
+                        <div class="radar-circle circle-2"></div>
+                        <div class="radar-circle circle-3"></div>
+                        <div class="radar-axis axis-x"></div>
+                        <div class="radar-axis axis-y"></div>
+                    </div>
+                    <!-- Radar Blips -->
+                    <div class="radar-blip blip-1"></div>
+                    <div class="radar-blip blip-2"></div>
+                    <div class="radar-blip blip-3"></div>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-block">
+                        <span class="stat-number primary">24</span>
+                        <span class="stat-label">ACTIVE SIGNALS</span>
+                    </div>
+                    <div class="stat-block">
+                        <span class="stat-number accent">07</span>
+                        <span class="stat-label">PRIORITY ALERTS</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ACTION BUTTONS ROW -->
+            <section class="actions-row">
+                <button class="action-btn">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>New Brief</span>
+                </button>
+                <button class="action-btn">
+                    <i class="fa-solid fa-code"></i>
+                    <span>Decode</span>
+                </button>
+                <button class="action-btn">
+                    <img src="images/rocket.svg" alt="Drone" class="drone-icon">
+                    <span>Request Drone</span>
+                </button>
+            </section>
+
+            <!-- INTELLIGENCE CARDS GRID -->
+            <section class="intelligence-grid">
+                <!-- Card 1 -->
+                <article class="intel-card priority-critical">
+                    <div class="card-header">
+                        <span class="badge badge-critical">CRITICAL</span>
+                        <span class="card-status">In Progress</span>
+                    </div>
+                    <h3 class="card-title">Operation Nightfall</h3>
+                    <div class="progress-section">
+                        <div class="progress-bar">
+                            <div class="progress-fill fill-85"></div>
+                        </div>
+                        <span class="progress-percentage">85%</span>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="intel-card priority-high">
+                    <div class="card-header">
+                        <span class="badge badge-high">HIGH</span>
+                        <span class="card-status">Analyzing</span>
+                    </div>
+                    <h3 class="card-title">Signal Intercept Alpha</h3>
+                    <div class="progress-section">
+                        <div class="progress-bar">
+                            <div class="progress-fill fill-42"></div>
+                        </div>
+                        <span class="progress-percentage">42%</span>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="intel-card priority-medium">
+                    <div class="card-header">
+                        <span class="badge badge-medium">MEDIUM</span>
+                        <span class="card-status">Pending</span>
+                    </div>
+                    <h3 class="card-title">Asset Recovery</h3>
+                    <div class="progress-section">
+                        <div class="progress-bar">
+                            <div class="progress-fill fill-18"></div>
+                        </div>
+                        <span class="progress-percentage">18%</span>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="intel-card priority-high">
+                    <div class="card-header">
+                        <span class="badge badge-high">HIGH</span>
+                        <span class="card-status">Active</span>
+                    </div>
+                    <h3 class="card-title">Cyber Defense Grid</h3>
+                    <div class="progress-section">
+                        <div class="progress-bar">
+                            <div class="progress-fill fill-89"></div>
+                        </div>
+                        <span class="progress-percentage">89%</span>
+                    </div>
+                </article>
+            </section>
+
+            <!-- THREAT ALERT BANNER -->
+            <section class="alert-banner">
+                <span class="alert-dot"></span>
+                <span class="alert-text">THREAT DETECTED</span>
+            </section>
+        </main>
+
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item ">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-rss"></i>
+                <span>Feed</span>
+            </a>
+        
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-file-contract"></i>
+                <span>Brief</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>
